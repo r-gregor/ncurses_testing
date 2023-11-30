@@ -1,0 +1,2 @@
+# gcc -o hello3 hello.c -lncurses
+# gcc -o TEST3 test3.c -lncurses
