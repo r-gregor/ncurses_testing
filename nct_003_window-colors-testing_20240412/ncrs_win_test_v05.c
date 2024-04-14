@@ -25,7 +25,7 @@ int main(void) {
 	int start_y  = 4;
 	int start_x  = 10;
 	int offset   =  2;
-	int lst      = 20;
+	int last     = 20;
 
 	/* create window */
 	WINDOW *win1 = newwin(height, width, start_y, start_x);
@@ -45,29 +45,29 @@ int main(void) {
 	
 	printw("[");
 	attron(COLOR_PAIR(1));
-	printw("ncrs_win_test_v04.c");
+	printw("ncrs_win_test_v05.c");
 	printw(" -- (test)");
 	attroff(COLOR_PAIR(1));
 	printw("]\n");
 	refresh();
 
 	/* display window */
-	printw("\n%10sTrying to print %d lines inside my_box ...\n"," ", lst);
+	printw("\n%10sTrying to print %d lines inside my_box ...\n"," ", last);
 	box(win1, 0, 0); // first: char for left and right; second: char for top and bottom
 	mvwprintw(win1, 0, offset, "[");
 	wattron(win1, A_REVERSE);
 	wprintw(win1, "This is my_box");
 	wattroff(win1, A_REVERSE);
 	wprintw(win1, "]");
-	int fst = lst - (height - 2) + 1;
+	int first = last - (height - 2) + 1;
 	for (int i = 0; i < height - 2; ++i) {
-		int pos = fst + i;
+		int pos = first + i;
 		if (pos <= 0) {
 			continue;
 			// mvwprintw(win1, startl + i, offset, "");
 			// wrefresh(win1);
 		} else {
-			mvwprintw(win1, i + 1, offset, "This is line %02d", fst + i);
+			mvwprintw(win1, i + 1, offset, "This is line %02d", first + i);
 			wrefresh(win1);
 		}
 	}
