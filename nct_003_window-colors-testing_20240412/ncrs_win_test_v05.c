@@ -1,5 +1,6 @@
 /*
  * ncrs_win_test_v05.c
+ * 20240624_02_en: make_nlrc() --> get_ncc()
  */
 
 #include <stdio.h>
@@ -9,7 +10,7 @@
 #define COLOR_BROWN_BG 22
 #define COLOR_SMOKE_FG 33
 
-int make_nlrc(int RGB);
+int get_ncc(int RGB);
 void init_new_colour(int COLOR_NAME, int R, int G, int B);
 
 int main(void) {
@@ -88,11 +89,12 @@ int main(void) {
 	/*
 	 * have to convert R,G,B from 0-255 to 0-999
 	 */
-int make_nlrc(int RGB) {
-	return (int)(RGB/255.0*999);
+int get_ncc(int RGB) {
+	float ratio = 999/255.0;
+	return (int)(RGB * ratio);
 }
 
 void init_new_colour(int COLOR_NAME, int R, int G, int B) {
-	init_color(COLOR_NAME, make_nlrc(R), make_nlrc(G), make_nlrc(B));
+	init_color(COLOR_NAME, get_ncc(R), get_ncc(G), get_ncc(B));
 }
 
